@@ -1,0 +1,9 @@
+{
+  "short_name": "SPS App",
+  "name": "Scissor Paper Stone",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
