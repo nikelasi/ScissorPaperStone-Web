@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
 
@@ -6,22 +6,30 @@ function App() {
   const [userChose, setUserChose] = useState('???')
   const [result, setResult] = useState('???')
 
-  const evaluateOption = (option: string) => {
+  const evaluateOption = async (option: string) => {
     const options = ["Scissor", "Paper", "Stone"]
-    setComputerChose(options[Math.floor(Math.random() * options.length)])
     setUserChose(option)
+    setComputerChose(options[Math.floor(Math.random() * options.length)])
+
+  }
+
+  useEffect(() => {
+    let final: string = ""
     if (
       (userChose === "Scissor" && computerChose === "Paper") || 
       (userChose === "Paper" && computerChose === "Stone") ||
       (userChose === "Stone" && computerChose === "Scissor")
-    ) { setResult("You won!") }
-    else if (userChose === computerChose) { setResult("Tie!") }
+    ) { final = "You won!" }
+    else if (userChose === computerChose) { final = "Tie!" }
     else if (
       (userChose === "Scissor" && computerChose === "Stone") ||
       (userChose === "Paper" && computerChose === "Scissor") ||
       (userChose === "Stone" && computerChose === "Paper")
-    ) { setResult("Computer won!") }
-  }
+    ) { final = "Computer won!" }
+    else { console.log(userChose, computerChose) }
+    
+    setResult(final)
+  }, [userChose, computerChose])
 
   return (
     <div className="App">
